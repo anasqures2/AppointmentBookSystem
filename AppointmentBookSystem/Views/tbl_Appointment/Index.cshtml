@@ -1,0 +1,71 @@
+﻿@model IEnumerable<AppointmentBookSystem.tbl_Appointment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Appoitment_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Appoitment_Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Appoitment_Details)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Appoitment_Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Appoitment_Patient_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Appoitment_Doctor_Id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Appoitment_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Appoitment_Time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Appoitment_Details)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Appoitment_Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Appoitment_Patient_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Appoitment_Doctor_Id)
+        </td>
+        <td>
+            @if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.Appoitment_Id })
+                @*@Html.ActionLink("Details", "Details", new { id = item.Appoitment_Id }) |*@
+                @Html.ActionLink("Delete", "Delete", new { id = item.Appoitment_Id })
+            }
+            @if (User.IsInRole("Doctor"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.Appoitment_Id })
+                
+            }
+        </td>
+    </tr>
+}
+
+</table>

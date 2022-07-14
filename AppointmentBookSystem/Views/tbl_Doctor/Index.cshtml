@@ -1,0 +1,85 @@
+﻿@model IEnumerable<AppointmentBookSystem.tbl_Doctor>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@*<h2>Index</h2>*@
+<form method="get" asp-action="Index">
+    <p>
+        <input type="search" placeholder="Enter Doctor name or Username..." value="@ViewData["GetDoctorDetails"]" name="doctorSearch" style="width:500px;"/>
+    <input type="submit" value="Search" class="btn btn-primary"/>
+    @Html.ActionLink("Get All Doctors", "Index")
+    </p>
+</form>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Doctor_Name)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Doctor_Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Doctor_Password)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Doctor_Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Doctor_Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Doctor_Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Doctor_IsAvailable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Doctor_Specialization_Id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Doctor_Name)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Doctor_Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Doctor_Password)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Doctor_Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Doctor_Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Doctor_Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Doctor_IsAvailable)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Doctor_Specialization_Id)
+        </td>
+        <td>
+            @if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.Doctor_Id })
+                @*@Html.ActionLink("Details", "Details", new { id = item.Appoitment_Id }) |*@
+                @Html.ActionLink("Delete", "Delete", new { id = item.Doctor_Id })
+            }
+        </td>
+    </tr>
+}
+
+</table>

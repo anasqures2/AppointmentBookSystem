@@ -1,0 +1,48 @@
+﻿@model IEnumerable<AppointmentBookSystem.tbl_User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User_Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_Role_Id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.User_Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User_Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User_Role_Id)
+        </td>
+        <td>
+            @if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.User_Id })
+                @*@Html.ActionLink("Details", "Details", new { id = item.Appoitment_Id }) |*@
+                @Html.ActionLink("Delete", "Delete", new { id = item.User_Id })
+            }
+        </td>
+    </tr>
+}
+
+</table>
